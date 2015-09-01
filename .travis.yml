@@ -13,7 +13,7 @@ matrix:
       addons:
         apt:
           packages:
-            - cabal
+            - cabal-install
     - env: TARGETS="configure-mozjs"
 
 script: make $TARGETS
