@@ -8,7 +8,7 @@ cache:
     - $HOME/.gradle
     - $HOME/.cabal
     - parsers/rhino
-    - parsers/v8
+#    - parsers/v8
 
 
 matrix:
