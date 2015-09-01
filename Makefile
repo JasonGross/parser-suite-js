@@ -8,7 +8,7 @@ VECHO_0 := @echo
 VECHO_1 := @true
 VECHO = $(VECHO_$(V))
 
-.PHONY: all language-ecmascript clean
+.PHONY: all language-ecmascript clean configure-mozjs
 
 all:
 
@@ -20,3 +20,6 @@ language-ecmascript::
 	cabal install --only-dependencies && \
 	cabal build && \
 	cabal install )
+
+configure-mozjs::
+	cd parsers/mozjs/js/src && ( ./configure )

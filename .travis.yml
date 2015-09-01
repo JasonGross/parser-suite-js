@@ -11,5 +11,6 @@ matrix:
       apt:
         packages:
           - cabal
+  - env: TARGETS="configure-mozjs"
 
 script: make $TARGETS
