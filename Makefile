@@ -8,7 +8,7 @@ VECHO_0 := @echo
 VECHO_1 := @true
 VECHO = $(VECHO_$(V))
 
-.PHONY: all language-ecmascript clean configure-mozjs rhino
+.PHONY: all language-ecmascript clean mozjs rhino
 
 all:
 
@@ -21,8 +21,9 @@ language-ecmascript::
 	cabal build && \
 	cabal install )
 
-configure-mozjs::
-	cd parsers/mozjs/js/src && ( ./configure )
+mozjs::
+	cd parsers/mozjs/js/src && ( ./configure && \
+	$(MAKE) )
 
 rhino::
 	cd parsers/rhino && ( ./gradlew jar && \

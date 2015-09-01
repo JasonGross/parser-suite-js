@@ -19,6 +19,6 @@ matrix:
         apt:
           packages:
             - java-common
-    - env: TARGETS="configure-mozjs"
+    - env: TARGETS="mozjs"
 
 script: make $TARGETS
