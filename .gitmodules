@@ -23,3 +23,6 @@
 [submodule "test-suites/test262"]
 	path = test-suites/test262
 	url = https://github.com/tc39/test262.git
+[submodule "test-suites/LambdaJS"]
+	path = test-suites/LambdaJS
+	url = https://github.com/brownplt/LambdaJS.git
