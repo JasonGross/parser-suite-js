@@ -1,0 +1,15 @@
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.cache
+
+
+matrix:
+  - env: TARGETS="language-ecmascript"
+    addons:
+      apt:
+        packages:
+          - cabal
+
+script: make $TARGETS
