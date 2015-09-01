@@ -1,4 +1,4 @@
-CFLAGS ?= -std=c11 -O3 -Wall -Wpedantic
+CFLAGS ?= -std=c99 -O3 -Wall -Wpedantic
 
 .PHONY: all test test-big test-small
 
