@@ -32,5 +32,6 @@ rhino::
 
 v8::
 	export PATH=`pwd`/tools/depot_tools:"$$PATH" && \
+	gclient config && \
 	gclient sync && \
 	cd parsers/v8 && ( $(MAKE) native )

@@ -14,6 +14,8 @@ matrix:
     - env: TARGETS="language-ecmascript"
       addons:
         apt:
+          sources:
+            - hvr-ghc
           packages:
             - ghc-7.8.4
             - cabal-install
