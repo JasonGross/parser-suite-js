@@ -27,7 +27,7 @@ ab10.0 ab10.0.0 ab10.0.0.0 ab10.0.0.0.0 ab10.0.0.0.0.0 ab10.0.0.0.0.0.0 ab10.0.0
 
 test: ab10.0.0.0.0.0.0 parserbuf parserswitch parserunbuf parserbufml parserunbufml
 	for F in ab10 ab10.0 ab10.0.0 ab10.0.0.0 ab10.0.0.0.0 ab10.0.0.0.0.0 ab10.0.0.0.0.0.0; do \
-	FMT="$$F (real: %e, user: %U, sys: %S, mem: %M ko)"; \
+	FMT="$${F//\./} (real: %e, user: %U, sys: %S, mem: %M ko)"; \
 	`which time` -f "cat     $$FMT" cat $$F>/dev/null; \
 	`which time` -f "buf     $$FMT" cat $$F | ./parserbuf; \
 	`which time` -f "unbuf   $$FMT" cat $$F | ./parserunbuf; \
@@ -38,7 +38,7 @@ test: ab10.0.0.0.0.0.0 parserbuf parserswitch parserunbuf parserbufml parserunbu
 
 test-small: ab10.0.0.0.0.0 parserunbufml
 	for F in ab10 ab10.0 ab10.0.0 ab10.0.0.0 ab10.0.0.0.0 ab10.0.0.0.0.0; do \
-	FMT="$$F (real: %e, user: %U, sys: %S, mem: %M ko)"; \
+	FMT="$${F//\./} (real: %e, user: %U, sys: %S, mem: %M ko)"; \
 	`which time` -f "cat     $$FMT" cat $$F>/dev/null; \
 	`which time` -f "bufml   $$FMT" cat $$F | ./parserbufml; \
 	`which time` -f "unbufml $$FMT" cat $$F | ./parserunbufml; \
@@ -47,7 +47,7 @@ test-small: ab10.0.0.0.0.0 parserunbufml
 
 test-big: ab10.0.0.0.0.0.0.0 parserunbufml
 	for F in ab10 ab10.0 ab10.0.0 ab10.0.0.0 ab10.0.0.0.0 ab10.0.0.0.0.0 ab10.0.0.0.0.0.0 ab10.0.0.0.0.0.0.0; do \
-	FMT="$$F (real: %e, user: %U, sys: %S, mem: %M ko)"; \
+	FMT="$${F//\./} (real: %e, user: %U, sys: %S, mem: %M ko)"; \
 	`which time` -f "cat     $$FMT" cat $$F>/dev/null; \
 	`which time` -f "unbufml $$FMT" cat $$F | ./parserunbufml; \
 	echo $$?; \
