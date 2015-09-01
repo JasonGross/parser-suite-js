@@ -13,7 +13,7 @@ parserbufml parserunbufml: % : %.ml
 ab10::
 	echo -n "abababababababababab" > $@
 
-%.0 : %
+ab10.0 ab10.0.0 ab10.0.0.0 ab10.0.0.0.0 ab10.0.0.0.0.0 ab10.0.0.0.0.0.0 ab10.0.0.0.0.0.0.0 : %.0 : %
 	@cp -f $< $@
 	@cat $< >> $@
 	@cat $< >> $@
