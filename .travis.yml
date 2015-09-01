@@ -11,12 +11,6 @@ cache:
 #    - parsers/v8
 
 
-addons:
-  apt:
-    packages:
-      - time
-
-
 matrix:
   include:
     - env: TARGETS="language-ecmascript"
@@ -39,6 +33,7 @@ matrix:
         apt:
           packages:
             - ocaml
+            - time
 
 install:
   - if [ "$TARGETS" == "language-ecmascript" ]; then export PATH="$HOME/.cabal/bin:$PATH"; fi
