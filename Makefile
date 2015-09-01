@@ -32,6 +32,6 @@ rhino::
 
 v8::
 	export PATH=`pwd`/tools/depot_tools:"$$PATH" && \
-	gclinet && \
+	gclient && \
 	cd parsers && ( fetch v8 && \
 	cd v8 && ( $(MAKE) native ) )
