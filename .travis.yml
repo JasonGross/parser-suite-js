@@ -31,6 +31,7 @@ matrix:
 
 install:
   - if [ "$TARGETS" == "language-ecmascript" ]; then export PATH="$HOME/.cabal/bin:$PATH"; fi
+  - if [ "$TARGETS" == "language-ecmascript" ]; then which cabal; fi
   - if [ "$TARGETS" == "language-ecmascript" ]; then cabal update; fi
   - if [ "$TARGETS" == "language-ecmascript" ]; then cabal install cabal-install; fi
   - if [ "$TARGETS" == "language-ecmascript" ]; then which cabal; fi
