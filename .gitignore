@@ -52,3 +52,4 @@ parsers/abstar/ab10*
 *.cmi
 *.cmxs
 *.cmx
+*.stackdump
