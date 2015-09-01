@@ -41,4 +41,4 @@ v8-or-clean::
 	$(MAKE) v8 || (rm -rf parsers/v8; false)
 
 abstar::
-	cd parsrs/abstar && $(MAKE) test-big test-small test
+	cd parsrs/abstar && $(MAKE) test-big test-small test test-big-pipe test-pipe
