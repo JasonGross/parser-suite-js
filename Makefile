@@ -8,7 +8,7 @@ VECHO_0 := @echo
 VECHO_1 := @true
 VECHO = $(VECHO_$(V))
 
-.PHONY: all language-ecmascript clean mozjs rhino
+.PHONY: all language-ecmascript clean mozjs rhino depot_tools v8
 
 all:
 
@@ -29,3 +29,8 @@ rhino::
 	cd parsers/rhino && ( ./gradlew jar && \
 	./gradlew test && \
 	./gradlew testBenchmark )
+
+v8::
+	export PATH=`pwd`/tools/depot_tools:"$$PATH" && \
+	gclient sync && \
+	cd parsers/v8 && ( $(MAKE) native )
