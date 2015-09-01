@@ -2,3 +2,6 @@
 	path = parsers/v8
 	url = https://github.com/v8/v8-git-mirror.git
 	branch = 4.7.17
+[submodule "test-suites/octane"]
+	path = test-suites/octane
+	url = https://github.com/chromium/octane.git
