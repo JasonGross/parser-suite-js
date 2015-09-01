@@ -8,3 +8,9 @@
 [submodule "parsers/rhino"]
 	path = parsers/rhino
 	url = https://github.com/mozilla/rhino.git
+[submodule "parsers/language-ecmascript"]
+	path = parsers/language-ecmascript
+	url = https://github.com/jswebtools/language-ecmascript.git
+[submodule "parsers/ML-LambdaJS"]
+	path = parsers/ML-LambdaJS
+	url = https://github.com/brownplt/ML-LambdaJS.git
