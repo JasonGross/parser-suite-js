@@ -1,46 +1,54 @@
 CFLAGS ?= -std=c11 -O3 -Wall -Wpedantic
 
-.PHONY: all test
+.PHONY: all test test-big test-small
 
-all: parserbuf
+all: parserbuf parserunbuf parserbufml parserunbufml
 
-parserbuf: parserbuf.c
+parserswitch parserbuf parserunbuf: % : %.c
 	$(CC) -o $@ $< $(CFLAGS) $(LDFLAGS)
+
+parserbufml parserunbufml: % : %.ml
+	ocamlopt -o $@ $<
 
 ab10::
 	echo -n "abababababababababab" > $@
 
-ab100: ab10
-	echo -n "$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)" > $@
+%.0 : %
+	@cp -f $< $@
+	@cat $< >> $@
+	@cat $< >> $@
+	@cat $< >> $@
+	@cat $< >> $@
+	@cat $< >> $@
+	@cat $< >> $@
+	@cat $< >> $@
+	@cat $< >> $@
+	@cat $< >> $@
 
-ab1000: ab100
-	@echo -n "$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)" > $@
-
-ab10000: ab1000
-	@echo -n "$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)" > $@
-
-ab100000: ab10000
-	@echo -n "$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)" > $@
-
-ab1000000: ab100000
-	@echo -n "$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)$(shell cat $<)" > $@
-
-ab10000000: ab1000000
-	cp -f $< $@
-	cat $< >> $@
-	cat $< >> $@
-	cat $< >> $@
-	cat $< >> $@
-	cat $< >> $@
-	cat $< >> $@
-	cat $< >> $@
-	cat $< >> $@
-	cat $< >> $@
-
-test: ab10000000 parserbuf
-	for F in ab10 ab100 ab1000 ab10000 ab100000 ab1000000 ab10000000; do \
+test: ab10.0.0.0.0.0.0 parserbuf parserswitch parserunbuf parserbufml parserunbufml
+	for F in ab10 ab10.0 ab10.0.0 ab10.0.0.0 ab10.0.0.0.0 ab10.0.0.0.0.0 ab10.0.0.0.0.0.0; do \
 	FMT="$$F (real: %e, user: %U, sys: %S, mem: %M ko)"; \
-	`which time` -f "$$FMT" cat $$F>/dev/null; \
-	`which time` -f "$$FMT" cat $$F | ./parserbuf; \
+	`which time` -f "cat     $$FMT" cat $$F>/dev/null; \
+	`which time` -f "buf     $$FMT" cat $$F | ./parserbuf; \
+	`which time` -f "unbuf   $$FMT" cat $$F | ./parserunbuf; \
+	`which time` -f "switch  $$FMT" cat $$F | ./parserswitch; \
+	`which time` -f "bufml   $$FMT" cat $$F | ./parserbufml; \
+	echo $$?; \
+	done
+
+test-small: ab10.0.0.0.0.0 parserunbufml
+	for F in ab10 ab10.0 ab10.0.0 ab10.0.0.0 ab10.0.0.0.0 ab10.0.0.0.0.0; do \
+	FMT="$$F (real: %e, user: %U, sys: %S, mem: %M ko)"; \
+	`which time` -f "cat     $$FMT" cat $$F>/dev/null; \
+	`which time` -f "bufml   $$FMT" cat $$F | ./parserbufml; \
+	`which time` -f "unbufml $$FMT" cat $$F | ./parserunbufml; \
+	echo $$?; \
+	done
+
+test-big: ab10.0.0.0.0.0.0.0 parserunbufml
+	for F in ab10 ab10.0 ab10.0.0 ab10.0.0.0 ab10.0.0.0.0 ab10.0.0.0.0.0 ab10.0.0.0.0.0.0 ab10.0.0.0.0.0.0.0; do \
+	FMT="$$F (real: %e, user: %U, sys: %S, mem: %M ko)"; \
+	`which time` -f "cat     $$FMT" cat $$F>/dev/null; \
+	`which time` -f "unbufml $$FMT" cat $$F | ./parserunbufml; \
 	echo $$?; \
 	done

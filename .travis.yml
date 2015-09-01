@@ -28,6 +28,11 @@ matrix:
             - java-common
     - env: TARGETS="mozjs"
     - env: TARGETS="v8-or-clean"
+    - env: TARGETS="abstar"
+      addons:
+        apt:
+          packages:
+            - ocaml
 
 install:
   - if [ "$TARGETS" == "language-ecmascript" ]; then export PATH="$HOME/.cabal/bin:$PATH"; fi
