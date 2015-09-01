@@ -8,7 +8,7 @@ cache:
     - $HOME/.gradle
     - $HOME/.cabal
     - parsers/rhino
-    - parsers/v8
+#    - parsers/v8
 
 
 matrix:
@@ -36,4 +36,4 @@ install:
   - if [ "$TARGETS" == "language-ecmascript" ]; then cabal install cabal-install; fi
   - if [ "$TARGETS" == "language-ecmascript" ]; then which cabal; fi
 
-script: make $TARGETS
+script: rm -rf parsers/v8; make $TARGETS
