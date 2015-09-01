@@ -25,9 +25,11 @@ ab10.0 ab10.0.0 ab10.0.0.0 ab10.0.0.0.0 ab10.0.0.0.0.0 ab10.0.0.0.0.0.0 ab10.0.0
 	@cat $< >> $@
 	@cat $< >> $@
 
+make_fmt = $$(echo "$1 (real: %e, user: %U, sys: %S, mem: %M ko)" | sed s'/\.//g')
+
 test: ab10.0.0.0.0.0.0 parserbuf parserswitch parserunbuf parserbufml parserunbufml
 	for F in ab10 ab10.0 ab10.0.0 ab10.0.0.0 ab10.0.0.0.0 ab10.0.0.0.0.0 ab10.0.0.0.0.0.0; do \
-	FMT="$${F//\./} (real: %e, user: %U, sys: %S, mem: %M ko)"; \
+	FMT="$(call make_fmt, $$F)"; \
 	`which time` -f "cat     $$FMT" cat $$F>/dev/null; \
 	`which time` -f "buf     $$FMT" ./parserbuf $$F; \
 	`which time` -f "unbuf   $$FMT" ./parserunbuf $$F; \
@@ -38,7 +40,7 @@ test: ab10.0.0.0.0.0.0 parserbuf parserswitch parserunbuf parserbufml parserunbu
 
 test-pipe: ab10.0.0.0.0.0.0 parserbuf parserswitch parserunbuf parserbufml parserunbufml
 	for F in ab10 ab10.0 ab10.0.0 ab10.0.0.0 ab10.0.0.0.0 ab10.0.0.0.0.0 ab10.0.0.0.0.0.0; do \
-	FMT="$${F//\./} (real: %e, user: %U, sys: %S, mem: %M ko)"; \
+	FMT="$(call make_fmt, $$F)"; \
 	`which time` -f "cat      $$FMT" cat $$F>/dev/null; \
 	`which time` -f "|buf     $$FMT" cat $$F | ./parserbuf; \
 	`which time` -f "|unbuf   $$FMT" cat $$F | ./parserunbuf; \
@@ -49,7 +51,7 @@ test-pipe: ab10.0.0.0.0.0.0 parserbuf parserswitch parserunbuf parserbufml parse
 
 test-small: ab10.0.0.0.0.0 parserunbufml parserbufml
 	for F in ab10 ab10.0 ab10.0.0 ab10.0.0.0 ab10.0.0.0.0 ab10.0.0.0.0.0; do \
-	FMT="$${F//\./} (real: %e, user: %U, sys: %S, mem: %M ko)"; \
+	FMT="$(call make_fmt, $$F)"; \
 	`which time` -f "cat     $$FMT" cat $$F>/dev/null; \
 	`which time` -f "bufml   $$FMT" ./parserbufml $$F; \
 	`which time` -f "unbufml $$FMT" ./parserunbufml $$F; \
@@ -58,7 +60,7 @@ test-small: ab10.0.0.0.0.0 parserunbufml parserbufml
 
 test-big: ab10.0.0.0.0.0.0.0 parserunbufml parserbuf
 	for F in ab10 ab10.0 ab10.0.0 ab10.0.0.0 ab10.0.0.0.0 ab10.0.0.0.0.0 ab10.0.0.0.0.0.0 ab10.0.0.0.0.0.0.0; do \
-	FMT="$${F//\./} (real: %e, user: %U, sys: %S, mem: %M ko)"; \
+	FMT="$(call make_fmt, $$F)"; \
 	`which time` -f "cat     $$FMT" cat $$F>/dev/null; \
 	`which time` -f "buf     $$FMT" ./parserbuf $$F; \
 	`which time` -f "unbufml $$FMT" ./parserunbufml $$F; \
@@ -67,7 +69,7 @@ test-big: ab10.0.0.0.0.0.0.0 parserunbufml parserbuf
 
 test-big-pipe: ab10.0.0.0.0.0.0.0.0 parserunbufml parserbuf
 	for F in ab10 ab10.0 ab10.0.0 ab10.0.0.0 ab10.0.0.0.0 ab10.0.0.0.0.0 ab10.0.0.0.0.0.0 ab10.0.0.0.0.0.0.0.0 ab10.0.0.0.0.0.0.0; do \
-	FMT="$${F//\./} (real: %e, user: %U, sys: %S, mem: %M ko)"; \
+	FMT="$(call make_fmt, $$F)"; \
 	`which time` -f "cat      $$FMT" cat $$F>/dev/null; \
 	`which time` -f "|buf     $$FMT" cat $$F | ./parserbuf; \
 	`which time` -f "|unbufml $$FMT" cat $$F | ./parserunbufml; \
