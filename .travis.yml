@@ -14,6 +14,11 @@ matrix:
         apt:
           packages:
             - cabal-install
+    - env: TARGETS="rhino"
+      addons:
+        apt:
+          packages:
+            - java-common
     - env: TARGETS="configure-mozjs"
 
 script: make $TARGETS

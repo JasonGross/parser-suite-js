@@ -8,7 +8,7 @@ VECHO_0 := @echo
 VECHO_1 := @true
 VECHO = $(VECHO_$(V))
 
-.PHONY: all language-ecmascript clean configure-mozjs
+.PHONY: all language-ecmascript clean configure-mozjs rhino
 
 all:
 
@@ -23,3 +23,8 @@ language-ecmascript::
 
 configure-mozjs::
 	cd parsers/mozjs/js/src && ( ./configure )
+
+rhino::
+	cd parsers/rhino && ( ./gradlew jar && \
+	./gradlew test && \
+	./gradlew testBenchmark )
