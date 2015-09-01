@@ -11,6 +11,12 @@ cache:
 #    - parsers/v8
 
 
+addons:
+  apt:
+    packages:
+      - time
+
+
 matrix:
   include:
     - env: TARGETS="language-ecmascript"
