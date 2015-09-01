@@ -23,6 +23,6 @@ matrix:
           packages:
             - java-common
     - env: TARGETS="mozjs"
-    - env: TARGETS="depot-tools"
+    - env: TARGETS="v8"
 
 script: make $TARGETS
