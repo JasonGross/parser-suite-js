@@ -14,3 +14,6 @@
 [submodule "parsers/ML-LambdaJS"]
 	path = parsers/ML-LambdaJS
 	url = https://github.com/brownplt/ML-LambdaJS.git
+[submodule "parsers/mozjs"]
+	path = parsers/mozjs
+	url = https://github.com/JasonGross/mozjs.git
