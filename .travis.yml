@@ -28,7 +28,7 @@ matrix:
             - java-common
     - env: TARGETS="mozjs"
     - env: TARGETS="v8-or-clean"
-    - env: TARGETS="abstar CFLAGS='-O3 -Wall'"
+    - env: TARGETS="abstar" CFLAGS="-O3 -Wall"
       addons:
         apt:
           packages:
@@ -41,4 +41,4 @@ install:
   - if [ "$TARGETS" == "language-ecmascript" ]; then cabal install cabal-install; fi
   - if [ "$TARGETS" == "language-ecmascript" ]; then which cabal; fi
 
-script: make $TARGETS
+script: make $TARGETS CFLAGS="$CFLAGS"
