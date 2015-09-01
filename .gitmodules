@@ -5,3 +5,6 @@
 [submodule "test-suites/octane"]
 	path = test-suites/octane
 	url = https://github.com/chromium/octane.git
+[submodule "parsers/rhino"]
+	path = parsers/rhino
+	url = https://github.com/mozilla/rhino.git
