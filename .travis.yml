@@ -13,6 +13,7 @@ matrix:
       addons:
         apt:
           packages:
+            - ghc-7.8.4
             - cabal-install
     - env: TARGETS="rhino"
       addons:
