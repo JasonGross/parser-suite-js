@@ -20,3 +20,6 @@
 [submodule "tools/depot_tools"]
 	path = tools/depot_tools
 	url = https://chromium.googlesource.com/chromium/tools/depot_tools.git
+[submodule "test-suites/test262"]
+	path = test-suites/test262
+	url = https://github.com/tc39/test262.git
