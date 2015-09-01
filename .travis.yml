@@ -8,11 +8,12 @@ cache:
 
 
 matrix:
-  - env: TARGETS="language-ecmascript"
-    addons:
-      apt:
-        packages:
-          - cabal
-  - env: TARGETS="configure-mozjs"
+  include:
+    - env: TARGETS="language-ecmascript"
+      addons:
+        apt:
+          packages:
+            - cabal
+    - env: TARGETS="configure-mozjs"
 
 script: make $TARGETS
