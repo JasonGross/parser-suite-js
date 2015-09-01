@@ -34,7 +34,5 @@ install:
   - if [ "$TARGETS" == "language-ecmascript" ]; then cabal update; fi
   - if [ "$TARGETS" == "language-ecmascript" ]; then cabal install cabal-install; fi
   - if [ "$TARGETS" == "language-ecmascript" ]; then which cabal; fi
-  - if [ "$TARGETS" == "language-ecmascript" ]; then ls "$HOME/.cabal"; fi
-  - if [ "$TARGETS" == "language-ecmascript" ]; then ls "$HOME/.cabal"/*; fi
 
 script: make $TARGETS
