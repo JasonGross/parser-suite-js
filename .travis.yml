@@ -8,7 +8,7 @@ cache:
     - $HOME/.gradle
     - $HOME/.cabal
     - parsers/rhino
-#    - parsers/v8
+    - parsers/v8
 
 
 matrix:
@@ -27,7 +27,7 @@ matrix:
           packages:
             - java-common
     - env: TARGETS="mozjs"
-    - env: TARGETS="v8"
+    - env: TARGETS="v8-or-clean"
 
 install:
   - if [ "$TARGETS" == "language-ecmascript" ]; then export PATH="$HOME/.cabal/bin:$PATH"; fi
@@ -36,4 +36,4 @@ install:
   - if [ "$TARGETS" == "language-ecmascript" ]; then cabal install cabal-install; fi
   - if [ "$TARGETS" == "language-ecmascript" ]; then which cabal; fi
 
-script: rm -rf parsers/v8; make $TARGETS
+script: make $TARGETS

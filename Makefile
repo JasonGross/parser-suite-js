@@ -30,8 +30,13 @@ rhino::
 	./gradlew test && \
 	./gradlew testBenchmark )
 
+
 v8::
 	export PATH=`pwd`/tools/depot_tools:"$$PATH" && \
 	gclient && \
-	cd parsers && ( fetch v8 && \
-	cd v8 && ( $(MAKE) native ) )
+	cd parsers && ( if [ ! -d v8 ]; then fetch v8; else ls v8; fi && \
+	cd v8 && ( gclient sync && \
+	$(MAKE) native ) )
+
+v8-or-clean::
+	$(MAKE) v8 || (rm -rf parsers/v8; false)
