@@ -34,6 +34,11 @@ matrix:
           packages:
             - ocaml
             - time
+    - env: TARGETS="ML-LambdaJS"
+      addons:
+        apt:
+          packages:
+            - ocaml
 
 install:
   - if [ "$TARGETS" == "language-ecmascript" ]; then export PATH="$HOME/.cabal/bin:$PATH"; fi

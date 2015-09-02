@@ -8,7 +8,7 @@ VECHO_0 := @echo
 VECHO_1 := @true
 VECHO = $(VECHO_$(V))
 
-.PHONY: all language-ecmascript clean mozjs rhino depot_tools v8 abstar
+.PHONY: all language-ecmascript clean mozjs rhino depot_tools v8 abstar ML-LambdaJS
 
 all:
 
@@ -42,3 +42,6 @@ v8-or-clean::
 
 abstar::
 	cd parsers/abstar && $(MAKE) test-big test-small test test-big-pipe test-pipe
+
+ML-LambdaJS::
+	cd parsers/ML-LambdaJS && $(MAKE)
