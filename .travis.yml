@@ -39,6 +39,7 @@ matrix:
         apt:
           packages:
             - ocaml
+            - menhir
 
 install:
   - if [ "$TARGETS" == "language-ecmascript" ]; then export PATH="$HOME/.cabal/bin:$PATH"; fi
