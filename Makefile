@@ -44,4 +44,4 @@ abstar::
 	cd parsers/abstar && $(MAKE) test-big test-small test test-big-pipe test-pipe
 
 ML-LambdaJS::
-	cd parsers/ML-LambdaJS && $(MAKE)
+	cd parsers/ML-LambdaJS/src && $(MAKE)
