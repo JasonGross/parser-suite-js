@@ -53,6 +53,8 @@ test-small: ab10.0.0.0.0.0 parserunbufml parserbufml
 	for F in ab10 ab10.0 ab10.0.0 ab10.0.0.0 ab10.0.0.0.0 ab10.0.0.0.0.0; do \
 	FMT="$(call make_fmt, $$F)"; \
 	$(shell which time) -f "cat     $$FMT" cat $$F>/dev/null; \
+	$(shell which time) -f "buf     $$FMT" ./parserbuf $$F; \
+	$(shell which time) -f "unbuf   $$FMT" ./parserunbuf $$F; \
 	$(shell which time) -f "bufml   $$FMT" ./parserbufml $$F; \
 	$(shell which time) -f "unbufml $$FMT" ./parserunbufml $$F; \
 	echo $$?; \
